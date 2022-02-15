@@ -5,22 +5,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-main{
-    height: 83vh;
-    background-color: #7FFFD4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* HEADER --------------------------- */
 
-.row{
+.header-container{
     height: 10vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.logo-container{
+.logo-wrapper{
     display: flex;
     align-items: center;
     gap: 15px;
@@ -30,30 +24,45 @@ main{
     height: 40px;
 }
 
-.controls-container{
+.controls-wrapper{
     font: 16px;
     display: flex;
     align-items: center;
     gap: 3px;
 }
 
-.controls-container select{
+.controls-wrapper select{
     width: 150px;
 }
 
-.game-container{
-    width: 500px;
-    height: 500px;
+/* MAIN --------------------------- */
+
+.main-container{
+    width: 100%;
+    height: 83vh;
+    background-color: #7FFFD4;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.game-container div{
+.easy-wrapper, .normal-wrapper, .crazy-wrapper{
+    /* display: flex; */
+    display: none;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 500px;
+}
+
+.box{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    border: 1px solid black;
 }
+
+/* FOOTER --------------------------- */
 
 footer{
     height: 7vh;
@@ -62,4 +71,10 @@ footer{
 
 .footer-container{
     margin-left: 17%;
+}
+
+/* active --------------------------- */
+
+.active{
+    display: flex;
 }
