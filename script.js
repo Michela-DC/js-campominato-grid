@@ -4,7 +4,6 @@
 // con difficoltà 3 => tra 1 e 49
 
 const mainContainer = document.querySelector('.main-container');
-console.log(mainContainer);
 const levels = document.getElementById('levels');
 const btnPlay = document.getElementById('btn-play');
 const boxesEasy = 100;
@@ -26,6 +25,17 @@ const crazyWrapper = document.createElement('div');
 crazyWrapper.classList.add('crazy-wrapper');
 mainContainer.append(crazyWrapper);
 
+let box; //la useró nei for passandola alla funzione per creare le cellette
+
+//funzione per creare le caselle e metterle dentro al loro container
+function createBox (square, col, index, wrapper){
+    square = document.createElement('div');
+    square.classList.add('box');
+    square.style.width = `calc(100% / ${col})`;
+    square.append(index);
+    wrapper.append(square);
+}
+
 
 btnPlay.addEventListener('click', function(){
     switch (levels.value){
@@ -33,15 +43,12 @@ btnPlay.addEventListener('click', function(){
             console.log('level easy')
 
             for(let i = 1; i <= boxesEasy; i++){
-                const box = document.createElement('div');
-                box.classList.add('box');
-                box.style.width = `calc(100% / ${colEasy})`;
-                box.append(i);
-                easyWrapper.append(box);
-                easyWrapper.classList.add('active');
-                normalWrapper.classList.remove('active');
-                crazyWrapper.classList.remove('activnormal');
-            }
+                createBox(box, colEasy, i, easyWrapper);
+            }         
+            easyWrapper.classList.add('active');
+            normalWrapper.classList.remove('active');
+            crazyWrapper.classList.remove('active');
+
             mainContainer.style.backgroundColor = '#7FFFD4';
             console.log(mainContainer);
             break;
@@ -50,15 +57,12 @@ btnPlay.addEventListener('click', function(){
             console.log('level normal');
 
             for(let i = 1; i <= boxesNormal; i++){
-                const box = document.createElement('div');
-                box.classList.add('box');
-                box.style.width = `calc(100% / ${colNormal})`;
-                box.append(i);
-                normalWrapper.append(box);
-                normalWrapper.classList.add('active');
-                easyWrapper.classList.remove('active')
-                crazyWrapper.classList.remove('activnormal');
+                createBox(box, colNormal, i, normalWrapper);
             }
+            normalWrapper.classList.add('active');
+            easyWrapper.classList.remove('active');
+            crazyWrapper.classList.remove('active');
+
             mainContainer.style.backgroundColor = '#FFD700';
             console.log(mainContainer);
             break;
@@ -67,21 +71,17 @@ btnPlay.addEventListener('click', function(){
             console.log('level crazy');
 
             for(let i = 1; i <= boxesCrazy; i++){
-                const box = document.createElement('div');
-                box.classList.add('box');
-                box.style.width = `calc(100% / ${colCrazy})`;
-                box.append(i);
-                crazyWrapper.append(box);
-                crazyWrapper.classList.add('active');
-                easyWrapper.classList.remove('active')
-                normalWrapper.classList.remove('active');
+                createBox(box, colCrazy, i, crazyWrapper);
             }
-            console.log(mainContainer);
+            crazyWrapper.classList.add('active');
+            normalWrapper.classList.remove('active');
+            easyWrapper.classList.remove('active');
+
             mainContainer.style.backgroundColor = '#FF6347';
+            console.log(mainContainer);
             break;
     
     }
 })
-
 
 
