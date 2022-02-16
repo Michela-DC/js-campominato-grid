@@ -35,6 +35,10 @@ const startGame = () => { //creo una funzione dove a seconda del caso si creaono
             columns = 7;
             console.log(gameContainer);
             break;
+
+        default:
+            squares = 100;
+            columns = 10;
     }
 
     // questa riga di codice fa in modo che il gameContainer, una volta scelto il livello, prima venga svuotato e poi dopo con il for ci ricreo dentro un'altra griglia
