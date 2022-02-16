@@ -3,85 +3,50 @@
 // con difficoltà 2 => tra 1 e 81
 // con difficoltà 3 => tra 1 e 49
 
-const mainContainer = document.querySelector('.main-container');
+const gameContainer = document.querySelector('.game-container');
 const levels = document.getElementById('levels');
-const btnPlay = document.getElementById('btn-play');
-const boxesEasy = 100;
-const colEasy = 10;
-const boxesNormal = 81;
-const colNormal = 9;
-const boxesCrazy = 49;
-const colCrazy = 7;
+const playBtn = document.getElementById('btn-play');
 
-const easyWrapper = document.createElement('div');
-easyWrapper.classList.add('easy-wrapper');
-mainContainer.append(easyWrapper);
-
-const normalWrapper = document.createElement('div');
-normalWrapper.classList.add('normal-wrapper');
-mainContainer.append(normalWrapper);
-
-const crazyWrapper = document.createElement('div');
-crazyWrapper.classList.add('crazy-wrapper');
-mainContainer.append(crazyWrapper);
-
-let box; //la useró nei for passandola alla funzione per creare le cellette
-
-//funzione per creare le caselle e metterle dentro al loro container
-function createBox (square, col, index, wrapper){
-    square = document.createElement('div');
-    square.classList.add('box');
-    square.style.width = `calc(100% / ${col})`;
-    square.append(index);
-    wrapper.append(square);
-}
-
-
-btnPlay.addEventListener('click', function(){
+// A seconda del livello si crea una griglia con numero di caselle diverso quindi:
+// di base devo creare un ciclo for per far generare le caselle poi a seconda del livello il ciclo prenderà valori diversi, ovvero quante volte cicla e la width delle celle cambia a seconda del numero di colonne
+const startGame = () => { //creo una funzione dove a seconda del caso si creaono griglie diverse
+    // dichiaro le variabili per le caselle e le colonne che cambieranno a seconda del livello
+    let squares, columns; 
+    // creo i casi a seconda del livello
     switch (levels.value){
         case 'easy':
-            console.log('level easy')
-
-            for(let i = 1; i <= boxesEasy; i++){
-                createBox(box, colEasy, i, easyWrapper);
-            }         
-            easyWrapper.classList.add('active');
-            normalWrapper.classList.remove('active');
-            crazyWrapper.classList.remove('active');
-
-            mainContainer.style.backgroundColor = '#7FFFD4';
-            console.log(mainContainer);
+            console.log('level easy');
+            // a seconda del livello cambia il numero di colonne
+            squares = 100;
+            columns = 10;
+            console.log(gameContainer);
             break;
     
         case 'normal':
             console.log('level normal');
-
-            for(let i = 1; i <= boxesNormal; i++){
-                createBox(box, colNormal, i, normalWrapper);
-            }
-            normalWrapper.classList.add('active');
-            easyWrapper.classList.remove('active');
-            crazyWrapper.classList.remove('active');
-
-            mainContainer.style.backgroundColor = '#FFD700';
-            console.log(mainContainer);
+            squares = 81;
+            columns = 9;
+            console.log(gameContainer);
             break;
         
         case 'crazy':
             console.log('level crazy');
-
-            for(let i = 1; i <= boxesCrazy; i++){
-                createBox(box, colCrazy, i, crazyWrapper);
-            }
-            crazyWrapper.classList.add('active');
-            normalWrapper.classList.remove('active');
-            easyWrapper.classList.remove('active');
-
-            mainContainer.style.backgroundColor = '#FF6347';
-            console.log(mainContainer);
+            squares = 49;
+            columns = 7;
+            console.log(gameContainer);
             break;
-    
     }
-})
 
+    gameContainer.innerHTML = ' ';
 
+    //Una volta che viene scelto il caso si possono creare le celle con un ciclo for e le inserisco dentro il game container
+    for(let i = 1; i <= squares; i++){
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.style.width = `calc(100% / ${columns})`;
+        box.append(i);
+        gameContainer.append(box);
+    }
+}
+
+playBtn.addEventListener('click',startGame);

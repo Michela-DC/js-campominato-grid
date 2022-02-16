@@ -5,10 +5,20 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 /* HEADER --------------------------- */
 
-.header-container{
+header{
     height: 10vh;
+    line-height: 10vh;
+}
+
+.header-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -37,24 +47,25 @@
 
 /* MAIN --------------------------- */
 
-.main-container{
-    width: 100%;
-    height: 83vh;
+main{
+    flex-grow: 1;
     background-color: #7FFFD4;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.easy-wrapper, .normal-wrapper, .crazy-wrapper{
-    /* display: flex; */
-    display: none;
-    flex-wrap: wrap;
+.game-container{
+    /* height: 500px; */
     width: 500px;
-    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .box{
+    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,6 +86,3 @@ footer{
 
 /* active --------------------------- */
 
-.active{
-    display: flex;
-}
