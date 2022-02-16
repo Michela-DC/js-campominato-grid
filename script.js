@@ -37,6 +37,7 @@ const startGame = () => { //creo una funzione dove a seconda del caso si creaono
             break;
     }
 
+    // questa riga di codice fa in modo che il gameContainer, una volta scelto il livello, prima venga svuotato e poi dopo con il for ci ricreo dentro un'altra griglia
     gameContainer.innerHTML = ' ';
 
     //Una volta che viene scelto il caso si possono creare le celle con un ciclo for e le inserisco dentro il game container
